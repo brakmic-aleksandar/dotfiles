@@ -3,6 +3,7 @@
 
 # List of directories and files that should be kept in repository
 !/fontconfig
+!/alacritty
 
 !.gitignore
 !README.md

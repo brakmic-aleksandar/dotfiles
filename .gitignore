@@ -1,0 +1,8 @@
+# By default ignore everything
+/*
+
+# List of directories and files that should be kept in repository
+!/fontconfig
+
+!.gitignore
+!README.md

@@ -3,6 +3,7 @@
 import pathlib
 from pathlib import os
 
+SUCCESS_GREEN = '\u001b[32m'
 OK_BLUE = '\033[94m'
 WARNING_YELLOW = '\033[93m'
 END_COLOR = '\033[0m'
@@ -21,6 +22,7 @@ def install_dir(src_files, dst_dir):
 			print(f"{WARNING_YELLOW}warning: {dst} already exists, it was renamed to {dst_suffix}.{END_COLOR}")
 
 		dst.symlink_to(src)
+		print(f"{SUCCESS_GREEN}success: {dst} installed successfully.{END_COLOR}")
 
 
 home_dir = pathlib.Path.home()

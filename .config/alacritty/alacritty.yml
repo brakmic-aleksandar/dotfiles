@@ -202,6 +202,7 @@ colors:
     magenta: '#f07178'  # Pink of the original material theme
     cyan:    '#89ddff'
     white:   '#ffffff'  # Arbitrary
+
 # Colors (Tomorrow Night)
 #colors:
   # Default colors

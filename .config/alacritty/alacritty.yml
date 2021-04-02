@@ -188,7 +188,7 @@ colors:
     green:   '#91b859'
     yellow:  '#ffb62c'
     blue:    '#6182b8'
-    magenta: '#ff5370'  # Dark pink of the original material theme
+    magenta: '#9575CD'  # Dark pink of the original material theme
     cyan:    '#39adb5'
     white:   '#a0a0a0'  # Arbitrary
 
@@ -199,7 +199,7 @@ colors:
     green:   '#c3e88d'
     yellow:  '#ffcb6b'
     blue:    '#82aaff'
-    magenta: '#f07178'  # Pink of the original material theme
+    magenta: '#B388FF'  # Pink of the original material theme
     cyan:    '#89ddff'
     white:   '#ffffff'  # Arbitrary
 

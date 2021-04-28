@@ -3,7 +3,7 @@
 #
 
 export PATH="$PATH:$HOME/.bin:$HOME/.local/bin"
-export EDITOR=vim
+export EDITOR=nvim
 
 [ [-f ~/.bashrc ]] && . ~/.bashrc
 

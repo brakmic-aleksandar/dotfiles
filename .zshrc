@@ -1,5 +1,5 @@
 # Import bash settings
-[[ ! -f ~/.bashrc ]] || source ~/.bashrc
+# [[ ! -f ~/.bashrc ]] || source ~/.bashrc
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -122,3 +122,4 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 unalias gm
+source ~/powerlevel10k/powerlevel10k.zsh-theme

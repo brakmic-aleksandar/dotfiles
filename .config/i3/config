@@ -90,9 +90,9 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "Discord (8)"
-set $ws9 "Music (9)"
-set $ws10 "TV (10)"
+set $ws8 "💬:8"
+set $ws9 "🎶:9"
+set $ws10 "📺:10"
 
 # assign workspaces to monitors
 workspace $ws1 output DP-2
@@ -205,7 +205,7 @@ for_window [class="(?i)*nextcloud*"] floating disable
 
 no_focus [class=”plasmashell”]
 
-for_window [class="plasmashell" window_type="notification"] border none, move right 750px, move up 450px
+for_window [class="plasmashell" window_type="notification"] border none, move window to output DP-2, move right 750px, move up 450px
 no_focus [class="plasmashell" window_type="notification"]
 
 ### i3-gaps stuff ###

@@ -34,6 +34,8 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
+let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmake', 'coc-json', 'coc-toml', 'coc-markdownlint', 'coc-spell-checker']
+
 " For Neovim 0.1.3 and 0.1.4 - https://github.com/neovim/neovim/pull/2198
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1

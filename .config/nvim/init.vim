@@ -27,6 +27,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jackguo380/vim-lsp-cxx-highlight'
   Plug 'vim-syntastic/syntastic'
   Plug 'rust-lang/rust.vim'
+  Plug 'tpope/vim-sleuth'
+  Plug 'lervag/vimtex'
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
@@ -34,7 +36,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
-let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmake', 'coc-json', 'coc-toml', 'coc-markdownlint', 'coc-spell-checker']
+let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmake', 'coc-json', 'coc-toml', 'coc-markdownlint', 'coc-spell-checker', 'coc-vimtex']
 
 " For Neovim 0.1.3 and 0.1.4 - https://github.com/neovim/neovim/pull/2198
 if (has('nvim'))

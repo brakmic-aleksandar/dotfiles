@@ -104,8 +104,10 @@ window:
 
 shell:
   program: zsh
-
-
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
 
 # Font configuration
 font:

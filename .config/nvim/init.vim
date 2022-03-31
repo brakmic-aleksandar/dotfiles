@@ -15,20 +15,18 @@ endif
 unlet autoload_plug_path
 
 call plug#begin('~/.vim/plugged')
-  Plug 'preservim/nerdtree'
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'jiangmiao/auto-pairs'
-  Plug 'machakann/vim-sandwich'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'jackguo380/vim-lsp-cxx-highlight'
-  Plug 'vim-syntastic/syntastic'
-  Plug 'rust-lang/rust.vim'
-  Plug 'tpope/vim-sleuth'
-  Plug 'lervag/vimtex'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' } " Theme
+  Plug 'preservim/nerdtree'                            " FileTree
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " File search
+  Plug 'vim-airline/vim-airline'                       " Status bar
+  Plug 'vim-airline/vim-airline-themes'                " Status bar themes
+  Plug 'ntpeters/vim-better-whitespace'                " Trailing whitespace detection
+  Plug 'jiangmiao/auto-pairs'                          " Automatically input bracket pairs
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}      " Autocompletion, linting
+  Plug 'sheerun/vim-polyglot'                          " Syntax highlighting, indent detection
+  Plug 'lervag/vimtex'                                 " Tex tooling
+  Plug 'puremourning/vimspector'                       " Debugger
+  Plug 'Konfekt/vim-alias'                             " Command aliases
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
@@ -38,6 +36,15 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmake', 'coc-json', 'coc-toml', 'coc-markdownlint', 'coc-spell-checker', 'coc-vimtex']
 
+let g:vimspector_enable_mappings = 'HUMAN'
+
+:Alias fzf FZF
+
+nnoremap ; :
+vnoremap ; :
+
+" polygot said to do that
+set nocompatible 
 " For Neovim 0.1.3 and 0.1.4 - https://github.com/neovim/neovim/pull/2198
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1

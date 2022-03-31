@@ -2,7 +2,7 @@
 	name = Aleksandar Brakmic
 	email = 13668697+brakmic-aleksandar@users.noreply.github.com
 [core]
-	editor = vim
+	editor = nvim
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

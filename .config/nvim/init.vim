@@ -25,7 +25,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}      " Autocompletion, linting
   Plug 'sheerun/vim-polyglot'                          " Syntax highlighting, indent detection
   Plug 'lervag/vimtex'                                 " Tex tooling
-  Plug 'puremourning/vimspector'                       " Debugger
+  Plug 'puremourning/vimspector', {
+  \ 'do': 'python3 install_gadget.py --enable-vscode-cpptools'
+  \ }                                                  " Debugger
   Plug 'Konfekt/vim-alias'                             " Command aliases
 call plug#end()
 

@@ -40,8 +40,6 @@ let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmak
 
 let g:vimspector_enable_mappings = 'HUMAN'
 
-:Alias fzf FZF
-
 nnoremap ; :
 vnoremap ; :
 
@@ -249,3 +247,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+

@@ -28,6 +28,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'puremourning/vimspector',                      " Debugger
     Plug 'puremourning/vimspector', {'do': 'python3 install_gadget.py --enable-vscode-cpptools'}                                                  " Debugger
   Plug 'Konfekt/vim-alias'                             " Command aliases
+  Plug 'tpope/vim-fugitive'                            " Adds git command in commandline
 call plug#end()
 
 " Run PlugInstall if there are missing plugins

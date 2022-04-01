@@ -1,2 +1,4 @@
 .config/wallpapers/current_wallpaper.png
 .config/nvim/autoload/
+.config/nvim/plugins
+.DS_Store

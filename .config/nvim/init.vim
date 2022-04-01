@@ -14,7 +14,7 @@ if !filereadable(autoload_plug_path)
 endif
 unlet autoload_plug_path
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('config') . '/plugins')
   Plug 'kaicataldo/material.vim', { 'branch': 'main' } " Theme
   Plug 'preservim/nerdtree'                            " FileTree
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " File search
@@ -248,3 +248,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" Show current branch
+set statusline^=%{FugitiveStatusline()}

@@ -36,6 +36,8 @@
     vcs                     # git status
     # prompt_char           # prompt symbol
   )
+  # Autosuggest colors
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 
   # The list of segments shown on the right. Fill it with less important segments.
   # Right prompt on the last prompt line (where you are typing your commands) gets
@@ -153,16 +155,16 @@
   fi
 
   # Default background color.
-  typeset -g POWERLEVEL9K_BACKGROUND=238
+  typeset -g POWERLEVEL9K_BACKGROUND=0
 
   # Separator between same-color segments on the left.
-  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%7F\uE0B1'
+  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=''
   # Separator between same-color segments on the right.
-  typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%7F\uE0B3'
+  typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=''
   # Separator between different-color segments on the left.
-  typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='%7F\uE0B0'
+  typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
   # Separator between different-color segments on the right.
-  typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='%7F\uE0B2'
+  typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
   # The right end of left prompt.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='\uE0B0'
   # The left end of right prompt.
@@ -205,17 +207,17 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=4
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=6
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=…
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=5
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=6
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=4
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=6
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -365,18 +367,18 @@
 
     if (( $1 )); then
       # Styling for up-to-date Git status.
-      local       meta='%7F'  # grey foreground
-      local      clean='%2F'   # green foreground
+      local       meta='%12F'  # grey foreground
+      local      clean='%12F'   # green foreground
       local   modified='%3F'  # yellow foreground
-      local  untracked='%5F'   # blue foreground
+      local  untracked='%4F'   # blue foreground
       local conflicted='%1F'  # red foreground
     else
       # Styling for incomplete and stale Git status.
-      local       meta='%7F'  # grey foreground
-      local      clean='%7F'  # grey foreground
-      local   modified='%7F'  # grey foreground
-      local  untracked='%7F'  # grey foreground
-      local conflicted='%7F'  # grey foreground
+      local       meta='%12F'  # grey foreground
+      local      clean='%12F'  # grey foreground
+      local   modified='%12F'  # grey foreground
+      local  untracked='%12F'  # grey foreground
+      local conflicted='%12F'  # grey foreground
     fi
 
     local res

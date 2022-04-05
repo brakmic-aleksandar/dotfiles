@@ -81,12 +81,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
- archlinux
  git
  python
  pip
  sudo
  command-not-found
+ zsh-autosuggestions
+ web-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,8 +116,17 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+alias grep="rg"
+alias vim="nvim"
+alias ls='ls -xa1 --color=auto'
+alias cat='bat --style=auto --color=auto --theme="Solarized (dark)"'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# FZF
+export FZF_DEFAULT_OPTS='-m --height 50% --color bg:0'
+# Use ripgrep with FZF
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
 

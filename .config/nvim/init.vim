@@ -1,34 +1,34 @@
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugrn'
-"   let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-
 " Install vim-plug if not found
 let plug_install = 0
 let autoload_plug_path = stdpath('config') . '/autoload/plug.vim'
 if !filereadable(autoload_plug_path)
-    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path . 
-        \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-    execute 'source ' . fnameescape(autoload_plug_path)
-    let plug_install = 1
+  silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path .
+      \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  execute 'source ' . fnameescape(autoload_plug_path)
+  let plug_install = 1
 endif
 unlet autoload_plug_path
 
 call plug#begin(stdpath('config') . '/plugins')
-  Plug 'kaicataldo/material.vim', { 'branch': 'main' } " Theme
+  Plug 'lifepillar/vim-solarized8',                    " Theme
   Plug 'preservim/nerdtree'                            " FileTree
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " File search
+  Plug 'junegunn/fzf.vim'
   Plug 'vim-airline/vim-airline'                       " Status bar
-  Plug 'vim-airline/vim-airline-themes'                " Status bar themes
+  Plug 'brakmic-aleksandar/vim-airline-themes'         " Status bar themes
   Plug 'ntpeters/vim-better-whitespace'                " Trailing whitespace detection
   Plug 'jiangmiao/auto-pairs'                          " Automatically input bracket pairs
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}      " Autocompletion, linting
   Plug 'sheerun/vim-polyglot'                          " Syntax highlighting, indent detection
   Plug 'lervag/vimtex'                                 " Tex tooling
-  Plug 'puremourning/vimspector',                      " Debugger
-    Plug 'puremourning/vimspector', {'do': 'python3 install_gadget.py --enable-vscode-cpptools'}                                                  " Debugger
   Plug 'Konfekt/vim-alias'                             " Command aliases
   Plug 'tpope/vim-fugitive'                            " Adds git command in commandline
+  Plug 'myusuf3/numbers.vim'                           " Show relative numbers
+  Plug 'christoomey/vim-tmux-navigator'                " Navigate between tmux and nvim panes
+  Plug 'puremourning/vimspector',                      " Debugger
+    Plug 'puremourning/vimspector', {'do': 'python3 install_gadget.py --enable-vscode-cpptools'}
+
+  Plug 'preservim/nerdcommenter'                       " Comment toggle
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}      " Autocompletion, linting
 call plug#end()
 
 " Run PlugInstall if there are missing plugins
@@ -36,52 +36,86 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| PlugInstall --sync | source $MYVIMRC
 \| endif
 
-let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmake', 'coc-json', 'coc-toml', 'coc-markdownlint', 'coc-spell-checker', 'coc-vimtex']
-
-let g:vimspector_enable_mappings = 'HUMAN'
+let g:coc_global_extensions = ['coc-rls', 'coc-pyright', 'coc-clangd', 'coc-cmake', 'coc-json', 'coc-toml', 'coc-markdownlint', 'coc-vimtex']
 
 nnoremap ; :
 vnoremap ; :
 
-" polygot said to do that
-set nocompatible 
-" For Neovim 0.1.3 and 0.1.4 - https://github.com/neovim/neovim/pull/2198
-if (has('nvim'))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-endif
+" Use space as leader key
+let mapleader = "\<Space>"
 
-" For Neovim > 0.1.5 and Vim > patch 7.4.1799 - https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162
-" Based on Vim patch 7.4.1770 (`guicolors` option) - https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd
-" https://github.com/neovim/neovim/wiki/Following-HEAD#20160511
-if (has('termguicolors'))
-  set termguicolors
-endif
+" [y]ank to clipnoard
+nnoremap <leader>y "+y
+xnoremap <leader>y "+y
 
+" [p]aste from clipboard
+nnoremap <leader>p "+p
+xnoremap <leader>p "+p
+
+" Highlight current line when in Insert mode
+autocmd InsertEnter,InsertLeave * set cul!
+
+" Appearance
+set termguicolors
 syntax enable
 filetype plugin indent on
+set background=dark
+let g:solarized_statusline = "flat"
+colorscheme solarized8
 
-let g:material_theme_style = 'darker'
+" Merge sign(gutter warnings and errors) colums and numbers column
+set signcolumn=number
 
-colorscheme material
-" Make background transparent
-hi Normal guibg=NONE ctermbg=NONE
+" Make Vertical splitter color same as numbers column
+highlight VertSplit guifg=#073642 guibg=#073642
+set fillchars=eob:\ 
 
-let g:airline_powerline_fonts = 0
-let g:airline_theme='transparent'
-" hi airline_c  ctermbg=NONE guibg=NONE
-" hi airline_tabfill ctermbg=NONE guibg=NONE
-set number
-autocmd FileType nerdtree set norelativenumber
+" Give more space for displaying messages.
+set cmdheight=2
+
+" NERDTree
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrowCollapsible = ' '
 let NERDTreeDirArrowExpandable = ' '
-set fcs=eob:\ 
-let g:syntastic_enable_signs = 0
-highlight clear SignColumn
-hi MatchParen cterm=NONE,bold gui=NONE,bold  guibg=NONE guifg=NONE
-" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
-" unicode characters in the file autoload/float.vim
-set encoding=utf-8
+let NERDTreeNaturalSort = 1
+let NERDTreeShowHidden = 1
+let NERDTreeStatusline = ''
+" nmap Z :NERDTreeToggle<CR>
+" nmap Z :NERDTreeFocus<CR>
+
+" FZF
+let g:fzf_colors = {
+\ 'fg':      ['fg', 'Normal'],
+\ 'bg':      ['bg', 'VertSplit'],
+\ 'hl':      ['fg', 'Identifier'],
+\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\ 'hl+':     ['fg', 'Identifier'],
+\ 'border':  ['bg', 'VertSplit'],
+\ 'pointer': ['fg', 'Type'],
+\ 'info':    ['fg', 'Type'],
+\ 'prompt':  ['fg', 'Type'],
+\ 'header':  ['fg', 'Identifier']
+\ }
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 0.99 } }
+" Search files
+nnoremap <silent> <C-F> :Files<CR>
+" Search in files
+nnoremap <silent> <Leader>f :Rg<CR>
+
+" Airline
+let g:airline_powerline_fonts = 0
+let g:airline_theme='solarized'
+" Don't show encoding if its utf-8
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+" Check this function out
+" function! AirlineThemePatch(palette)
+"  if g:airline_theme == 'solarized'
+"    for colors in values(a:palette.normal)
+"      let colors[0] = #073642
+"    endfor
+"  endif
+"endfunction
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -90,9 +124,6 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
-set cmdheight=2
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -100,15 +131,32 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" Vimspector
+" Run VimspectorInstall to install these adapters
+let g:vimspector_install_gadgets = [ 'CodeLLDB' ]
 
+let g:vimspector_enable_mappings = 'HUMAN'
+
+"" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+" toggle breakpoints view
+nmap <Leader>dtb <Plug>VimspectorBreakpoints
+
+function! s:CustomiseUI()
+  " Close the output window
+  call win_gotoid( g:vimspector_session_windows.output )
+  q
+endfunction
+
+augroup MyVimspectorUICustomistaion
+  autocmd!
+  autocmd User VimspectorUICreated call s:CustomiseUI()
+augroup END
+
+" COC
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.

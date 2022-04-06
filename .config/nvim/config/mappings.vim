@@ -22,6 +22,12 @@ nnoremap <silent> <Leader>ff :Files<CR>
 " Files grep
 nnoremap <silent> <Leader>fg :Rg<CR>
 
+
+" NERDCommenter
+nmap <Leader>cc <Plug>NERDCommenterToggle
+xmap <Leader>cc <Plug>NERDCommenterToggle
+
+
 " ## Vimspector ##
 nnoremap <Leader>dd :call vimspector#Launch()<CR>
 nnoremap <Leader>dr :call vimspector#Reset()<CR>

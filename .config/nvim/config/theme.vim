@@ -6,7 +6,10 @@ set background=dark
 let g:solarized_statusline = "flat"
 colorscheme solarized8
 " Make Vertical splitter color same as numbers column
-highlight VertSplit guifg=#073642 guibg=#073642
+highlight VertSplit NONE
+highlight SignColumn NONE
+highlight link VertSplit LineNr
+highlight link SignColumn LineNr
 
 
 " ## Airline ##

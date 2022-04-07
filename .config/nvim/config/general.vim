@@ -29,7 +29,7 @@ filetype plugin indent on
 set scrolloff=2
 
 " Set fillchars for folding, vertical split, end of buffer, and message separator
-set fillchars=fold:\ ,vert:\|,eob:\ ,msgsep:‾
+set fillchars=fold:\ ,vert:\ ,eob:\ ,msgsep:‾
 
 " Give more space for displaying messages.
 set cmdheight=2

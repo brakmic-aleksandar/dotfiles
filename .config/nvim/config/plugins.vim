@@ -52,7 +52,8 @@ let NERDTreeDirArrowExpandable = ' '
 let NERDTreeNaturalSort = 1
 let NERDTreeShowHidden = 1
 let NERDTreeStatusline = ''
-
+" Hide sign column in NERDTree windows
+autocmd FileType nerdtree setlocal scl=no
 
 " #  FZF ##
 " Show fzf window at the bottom of the screen

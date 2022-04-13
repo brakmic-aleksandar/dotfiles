@@ -1,6 +1,6 @@
 " ### THEME ###
 
-" ## Genera; ##
+" ## General ##
 set termguicolors
 set background=dark
 let g:solarized_statusline = "flat"

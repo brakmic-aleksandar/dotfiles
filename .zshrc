@@ -1,6 +1,3 @@
-# Import bash settings
-[[ ! -f ~/.zprofile ]] || source ~/.zprofile
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -120,6 +117,10 @@ alias grep="rg"
 alias vim="nvim"
 alias ls='ls -xa1 --color=auto'
 alias cat='bat --style=auto --color=auto --theme="Solarized (dark)"'
+alias zsh_x86='arch -x86_64 /bin/zsh -i --login'
+alias zsh_arm='arch -arm64 /bin/zsh -i --login'
+alias printpath="tr ':' '\n' <<< \"\$PATH\""
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -130,3 +131,15 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
 fi
 
+if [[ "$(uname -m)" == "arm64" ]] then
+  # On ARM macOS, this script installs to /opt/homebrew only
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  #export PATH="/opt/homebrew/bin:$PATH"
+else
+  # On Intel macOS, this script installs to /usr/local only
+  eval "$(/usr/local/bin/brew shellenv)"
+  #export PATH="/usr/local/homebrew/bin:$PATH"
+fi
+
+# Import machine specific settings
+[[ -f ~/.machinerc ]] && source ~/.machinerc

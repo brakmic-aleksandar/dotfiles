@@ -81,6 +81,7 @@ program = "zsh"
 
 [window]
 opacity = 1.0
+option_as_alt = "Both"
 
 [window.padding]
 x = 0

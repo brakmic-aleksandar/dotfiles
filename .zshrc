@@ -141,5 +141,39 @@ else
   #export PATH="/usr/local/homebrew/bin:$PATH"
 fi
 
+# Notify when long commands finish
+autoload -Uz add-zsh-hook
+
+LONG_CMD_THRESHOLD=20
+cmd_start=0
+cmd_text=""
+
+preexec() {
+  cmd_start=$SECONDS
+  cmd_text=$1
+}
+
+precmd() {
+  (( cmd_start == 0 )) && return
+
+  local duration=$(( SECONDS - cmd_start ))
+  local exit_code=$?
+
+  if (( duration > LONG_CMD_THRESHOLD )); then
+    local icon="✔"
+    (( exit_code != 0 )) && icon="✘"
+
+    terminal-notifier \
+      -title "$icon Command finished (${duration}s)" \
+      -message "$cmd_text" \
+      -ignoreDnD
+  fi
+
+  cmd_start=0
+}
+
+add-zsh-hook preexec preexec
+add-zsh-hook precmd precmd
+
 # Import machine specific settings
 [[ -f ~/.machinerc ]] && source ~/.machinerc
